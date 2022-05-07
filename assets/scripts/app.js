@@ -38,6 +38,24 @@ function writeToLog(
 }
 
 function calculateResult(calculationType) {
+  if (
+    (calculationType !== "ADD" &&
+      calculationType !== "SUBTRACT" &&
+      calculationType !== "MULTIPLY" &&
+      calculationType !== "DIVIDE") ||
+    !enteredNumber //when no number is entered so it returns false
+  ) {
+    return;
+  }
+  // we can use either the AND condition above or the OR condition down here to
+  // check for the conditions.
+
+  //   if (
+  //     calculationType === "AND" ||
+  //     calculationType === "SUBTRACT" ||
+  //     calculationType === "MULTIPLY" ||
+  //     calculationType === "DIVIDE"
+  //   ) {
   const enteredNumber = parseInt(userInput.value);
   const initialResult = currentResult;
   if (calculationType === "ADD") {
@@ -53,6 +71,10 @@ function calculateResult(calculationType) {
     currentResult /= enteredNumber;
     mathOperator = "/";
   }
+  // this statement will still run even when its not divide and thats not what we
+  // we want so we use the && or || conditional to check for the operator
+  //   }
+
   createAndWriteOutput(initialResult, "+", enteredNumber);
   writeToLog(calculationType, initialResult, enteredNumber, currentResult);
 }
